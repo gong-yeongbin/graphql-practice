@@ -7,6 +7,10 @@ export class JobService {
   private job: Job[] = [];
   private idSeq: number = 1;
 
+  findOne(id: number): Job | undefined {
+    return this.job.find((j) => j.id === id);
+  }
+
   findAll(): Job[] {
     return this.job;
   }
