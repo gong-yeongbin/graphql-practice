@@ -8,15 +8,13 @@ import { User } from '@/user/dto/response';
 
 @Injectable()
 export class UserService {
-  private user: User[] = [];
-  private idSeq: number = 1;
-
   constructor(
     @Inject(USER_REPOSITORY) private readonly userRepository: IUser,
   ) {}
 
-  findAll(): User[] {
-    return this.user;
+  async findAll(): Promise<User[]> {
+    const userList = await this.userRepository.findMany();
+    return userList.map((user) => plainToInstance(User, user));
   }
 
   async create(input: CreateUserInput): Promise<User> {

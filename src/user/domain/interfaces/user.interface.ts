@@ -3,4 +3,5 @@ import { CreateUserDto } from '@/user/dto';
 
 export interface IUser {
   create(user: CreateUserDto): Promise<UserEntity>;
+  findMany(): Promise<UserEntity[]>;
 }

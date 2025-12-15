@@ -15,4 +15,12 @@ export class UserRepository implements IUser {
       throw new InternalServerErrorException(e);
     }
   }
+
+  async findMany(): Promise<UserEntity[]> {
+    try {
+      return await this.prismaService.user.findMany();
+    } catch (e) {
+      throw new InternalServerErrorException(e);
+    }
+  }
 }
