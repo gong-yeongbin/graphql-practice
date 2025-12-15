@@ -10,6 +10,12 @@
     "sourceMap": true,
     "outDir": "./dist",
     "baseUrl": "./",
+    "paths": {
+      "@/": ["src/*"],
+      "@/prisma/*": ["src/prisma/*"],
+      "@/user/*": ["src/user/*"],
+      "@/job/*": ["src/job/*"]
+    },
     "incremental": true,
     "skipLibCheck": true,
     "strictNullChecks": true,
