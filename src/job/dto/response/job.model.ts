@@ -6,8 +6,5 @@ export class Job {
   id: number;
 
   @Field()
-  jobName: string;
-
-  @Field(() => Int)
-  salary: number;
+  name: string;
 }

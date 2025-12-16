@@ -1,7 +1,7 @@
-import { Job } from './job.model';
 import { Args, Int, Mutation, Query, Resolver } from '@nestjs/graphql';
-import { JobService } from './job.service';
-import { CreateJobInput } from './dto/create-job.input';
+import { Job } from '@/job/dto/response';
+import { JobService } from '@/job/use-case';
+import { CreateJobInput } from '@/job/dto/request';
 
 @Resolver(() => Job)
 export class JobResolver {
@@ -13,12 +13,12 @@ export class JobResolver {
   }
 
   @Query(() => [Job], { name: 'jobs' })
-  findAll(): Job[] {
+  async findAll(): Promise<Job[]> {
     return this.jobService.findAll();
   }
 
   @Mutation(() => Job)
-  createJob(@Args('input') input: CreateJobInput): Job {
+  async createJob(@Args('input') input: CreateJobInput): Promise<Job> {
     return this.jobService.create(input);
   }
 }
