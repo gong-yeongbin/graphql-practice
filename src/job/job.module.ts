@@ -10,5 +10,6 @@ import { JobRepository } from '@/job/infrastructure';
     JobService,
     { provide: JOB_REPOSITORY, useClass: JobRepository },
   ],
+  exports: [JobService],
 })
 export class JobModule {}

@@ -5,6 +5,7 @@ import { IUser } from '@/user/domain/interfaces';
 import { CreateUserDto } from '@/user/dto';
 import { plainToInstance } from 'class-transformer';
 import { User } from '@/user/dto/response';
+import { Job } from '@/job/dto/response';
 
 @Injectable()
 export class UserService {
@@ -15,6 +16,11 @@ export class UserService {
   async findAll(): Promise<User[]> {
     const userList = await this.userRepository.findMany();
     return userList.map((user) => plainToInstance(User, user));
+  }
+
+  async findJobs(id: number): Promise<Job[]> {
+    const jobList = await this.userRepository.findJobs(id);
+    return jobList.map((job) => plainToInstance(Job, job));
   }
 
   async create(input: CreateUserInput): Promise<User> {

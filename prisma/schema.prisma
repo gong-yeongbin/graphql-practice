@@ -18,21 +18,12 @@ model user {
   name  String  @unique
   email String?
 
-  user_job user_job[]
-}
-
-model user_job {
-  userId Int
-  jobId  Int
-
-  user user @relation(fields: [userId], references: [id])
-  job  job  @relation(fields: [jobId], references: [id])
-
-  @@unique([userId, jobId])
+  job job[]
 }
 
 model job {
-  id       Int        @id @default(autoincrement())
-  name     String     @unique
-  user_job user_job[]
+  id   Int    @id @default(autoincrement())
+  name String @unique
+
+  user user[]
 }
